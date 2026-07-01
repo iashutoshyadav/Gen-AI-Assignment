@@ -1,0 +1,237 @@
+{
+  "config": {
+    "k": 5,
+    "embed_model": "all-MiniLM-L6-v2",
+    "embed_dim": 384,
+    "generator": "openai/gpt-oss-120b",
+    "judge": "qwen/qwen3.6-27b",
+    "n_questions": 18
+  },
+  "retrieval": {
+    "hit_rate@k": 1.0,
+    "mrr": 1.0,
+    "ndcg@k": 0.991,
+    "context_precision": 0.372
+  },
+  "answer": {
+    "faithfulness_mean_5": 5,
+    "relevance_mean_5": 5,
+    "exact_match": 0.294,
+    "f1": 0.648
+  },
+  "no_context_guard_accuracy": 1.0,
+  "latency_ms": {
+    "retrieval_p50": 270.4,
+    "retrieval_p95": 473.8,
+    "e2e_p95": 1743.1
+  },
+  "rows": [
+    {
+      "q": "What is the smallest deployable unit in Kubernetes?",
+      "relevant": "k8s_pods.md",
+      "retrieved": [
+        "k8s_pods.md",
+        "k8s_deployments.md",
+        "k8s_services.md",
+        "k8s_config.md",
+        "k8s_storage.md"
+      ],
+      "no_context": false,
+      "answer": "The smallest deployable unit in Kubernetes is a **Pod**\u30101\u3011."
+    },
+    {
+      "q": "What do containers in a Pod share?",
+      "relevant": "k8s_pods.md",
+      "retrieved": [
+        "k8s_pods.md",
+        "k8s_services.md",
+        "k8s_services.md",
+        "k8s_config.md",
+        "k8s_storage.md"
+      ],
+      "no_context": false,
+      "answer": "Containers in a Pod share the same network namespace and the same storage volumes. \u30101\u3011"
+    },
+    {
+      "q": "What are the five phases of a Pod?",
+      "relevant": "k8s_pods.md",
+      "retrieved": [
+        "k8s_pods.md",
+        "k8s_services.md",
+        "k8s_services.md",
+        "k8s_config.md",
+        "k8s_deployments.md"
+      ],
+      "no_context": false,
+      "answer": "The five Pod phases are **Pending, Running, Succeeded, Failed, and Unknown**\u30101\u3011."
+    },
+    {
+      "q": "What is the default restart policy for a Pod?",
+      "relevant": "k8s_pods.md",
+      "retrieved": [
+        "k8s_pods.md",
+        "k8s_deployments.md",
+        "k8s_storage.md",
+        "k8s_services.md",
+        "k8s_services.md"
+      ],
+      "no_context": false,
+      "answer": "The default restart policy for a Pod is **Always**\u30101\u3011."
+    },
+    {
+      "q": "What is a Kubernetes Service?",
+      "relevant": "k8s_services.md",
+      "retrieved": [
+        "k8s_services.md",
+        "k8s_pods.md",
+        "k8s_deployments.md",
+        "k8s_storage.md",
+        "k8s_services.md"
+      ],
+      "no_context": false,
+      "answer": "A Kubernetes Service is an abstraction that defines a logical set of Pods and a policy for accessing them, providing a stable endpoint for a group of Pods selected by labels despite the Pods\u2019 ephemeral nature and changing IPs.\u202f[1]"
+    },
+    {
+      "q": "What is the default Service type?",
+      "relevant": "k8s_services.md",
+      "retrieved": [
+        "k8s_services.md",
+        "k8s_pods.md"
+      ],
+      "no_context": false,
+      "answer": "The default Service type is **ClusterIP**\u30101\u3011."
+    },
+    {
+      "q": "What are the four main Service types?",
+      "relevant": "k8s_services.md",
+      "retrieved": [
+        "k8s_services.md",
+        "k8s_pods.md"
+      ],
+      "no_context": false,
+      "answer": "The four main Service types are **ClusterIP**, **NodePort**, **LoadBalancer**, and **ExternalName**\u30101\u3011."
+    },
+    {
+      "q": "What component implements the Service abstraction on each node?",
+      "relevant": "k8s_services.md",
+      "retrieved": [
+        "k8s_services.md",
+        "k8s_pods.md",
+        "k8s_storage.md"
+      ],
+      "no_context": false,
+      "answer": "The Service abstraction is implemented on each node by **kube\u2011proxy**, which runs on every node and manages the network rules for Services\u30101\u3011."
+    },
+    {
+      "q": "What does a Deployment provide?",
+      "relevant": "k8s_deployments.md",
+      "retrieved": [
+        "k8s_deployments.md",
+        "k8s_pods.md",
+        "k8s_services.md",
+        "k8s_storage.md"
+      ],
+      "no_context": false,
+      "answer": "A Deployment provides declarative updates for Pods and ReplicaSets\u30101\u3011."
+    },
+    {
+      "q": "What is the default deployment strategy?",
+      "relevant": "k8s_deployments.md",
+      "retrieved": [
+        "k8s_deployments.md",
+        "k8s_pods.md",
+        "k8s_services.md"
+      ],
+      "no_context": false,
+      "answer": "The default deployment strategy is **RollingUpdate**\u30101\u3011."
+    },
+    {
+      "q": "How many revisions does Kubernetes retain by default?",
+      "relevant": "k8s_deployments.md",
+      "retrieved": [
+        "k8s_deployments.md",
+        "k8s_pods.md",
+        "k8s_storage.md",
+        "k8s_services.md",
+        "k8s_config.md"
+      ],
+      "no_context": false,
+      "answer": "Kubernetes keeps the last\u202f10\u202frevisions by default\u202f[1]."
+    },
+    {
+      "q": "What is a PersistentVolumeClaim?",
+      "relevant": "k8s_storage.md",
+      "retrieved": [
+        "k8s_storage.md",
+        "k8s_pods.md",
+        "k8s_deployments.md"
+      ],
+      "no_context": false,
+      "answer": "A PersistentVolumeClaim (PVC) is a user\u2019s request for storage in the cluster.\u202fIt represents a claim that a user makes to obtain a PersistentVolume for their workloads.\u202f[1]"
+    },
+    {
+      "q": "What are the access modes for a PersistentVolume?",
+      "relevant": "k8s_storage.md",
+      "retrieved": [
+        "k8s_storage.md",
+        "k8s_config.md",
+        "k8s_pods.md"
+      ],
+      "no_context": false,
+      "answer": "The access modes for a PersistentVolume are **ReadWriteOnce, ReadOnlyMany, ReadWriteMany, and ReadWriteOncePod**\u30101\u3011."
+    },
+    {
+      "q": "What is the default reclaim policy for dynamically provisioned volumes?",
+      "relevant": "k8s_storage.md",
+      "retrieved": [
+        "k8s_storage.md",
+        "k8s_pods.md",
+        "k8s_deployments.md"
+      ],
+      "no_context": false,
+      "answer": "The default reclaim policy for dynamically provisioned volumes is **Delete**\u30101\u3011."
+    },
+    {
+      "q": "What is a ConfigMap used for?",
+      "relevant": "k8s_config.md",
+      "retrieved": [
+        "k8s_config.md",
+        "k8s_services.md"
+      ],
+      "no_context": false,
+      "answer": "A ConfigMap is an API object that stores non\u2011confidential configuration data as key\u2011value pairs, which Pods can consume as environment variables, command\u2011line arguments, or configuration files mounted in a volume\u202f[1]."
+    },
+    {
+      "q": "How are Secrets stored by default in etcd?",
+      "relevant": "k8s_config.md",
+      "retrieved": [
+        "k8s_config.md",
+        "k8s_storage.md"
+      ],
+      "no_context": false,
+      "answer": "By default, Secrets are stored in etcd as plain (unencrypted) data that is merely base64\u2011encoded strings.\u202f[1]"
+    },
+    {
+      "q": "What is the maximum size of a Secret?",
+      "relevant": "k8s_config.md",
+      "retrieved": [
+        "k8s_config.md"
+      ],
+      "no_context": false,
+      "answer": "The maximum size of a Secret is\u202f1\u202fMiB\u30101\u3011."
+    },
+    {
+      "q": "Who won the 2018 FIFA World Cup?",
+      "relevant": null,
+      "retrieved": [
+        "k8s_services.md",
+        "k8s_pods.md",
+        "k8s_storage.md",
+        "k8s_config.md",
+        "k8s_pods.md"
+      ],
+      "no_context": true,
+      "answer": "I don't have enough information in the provided context to answer that."
+    }
+  ]
+}

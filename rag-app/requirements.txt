@@ -1,0 +1,8 @@
+chromadb>=1.5
+groq>=0.11
+pypdf>=4.0
+beautifulsoup4>=4.12
+markdown>=3.5
+fastapi>=0.110
+uvicorn>=0.29
+pydantic>=2.6

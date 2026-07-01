@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 560" font-family="system-ui,Segoe UI,Arial" font-size="13">
+  <style>
+    .box{fill:#f4f7fb;stroke:#4a6fa5;stroke-width:1.5;rx:8}
+    .store{fill:#eaf6ec;stroke:#3a8f4f;stroke-width:1.5}
+    .llm{fill:#fdf2e3;stroke:#d08a2d;stroke-width:1.5}
+    .guard{fill:#fdeaea;stroke:#c0392b;stroke-width:1.5}
+    .lbl{fill:#1f2d3d}
+    .mut{fill:#5b6b7d;font-size:11px}
+    .arrow{stroke:#4a6fa5;stroke-width:1.6;fill:none;marker-end:url(#a)}
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#4a6fa5"/>
+    </marker>
+  </defs>
+
+  <text x="20" y="28" font-size="17" font-weight="700" class="lbl">Cost-Efficient RAG — Architecture</text>
+
+  <!-- ingestion row -->
+  <rect class="box" x="20" y="55" width="150" height="58" rx="8"/>
+  <text x="95" y="78" text-anchor="middle" class="lbl" font-weight="600">Documents</text>
+  <text x="95" y="96" text-anchor="middle" class="mut">PDF · HTML · MD</text>
+
+  <rect class="box" x="205" y="55" width="160" height="58" rx="8"/>
+  <text x="285" y="78" text-anchor="middle" class="lbl" font-weight="600">Chunking</text>
+  <text x="285" y="96" text-anchor="middle" class="mut">size=800 / overlap=120</text>
+
+  <rect class="box" x="400" y="55" width="170" height="58" rx="8"/>
+  <text x="485" y="78" text-anchor="middle" class="lbl" font-weight="600">Embedding</text>
+  <text x="485" y="96" text-anchor="middle" class="mut">MiniLM-L6-v2 · 384-d</text>
+
+  <rect class="store" x="605" y="48" width="180" height="72" rx="8"/>
+  <text x="695" y="74" text-anchor="middle" class="lbl" font-weight="600">ChromaDB</text>
+  <text x="695" y="92" text-anchor="middle" class="mut">vectors + metadata</text>
+  <text x="695" y="108" text-anchor="middle" class="mut">cosine · persistent</text>
+
+  <line class="arrow" x1="170" y1="84" x2="203" y2="84"/>
+  <line class="arrow" x1="365" y1="84" x2="398" y2="84"/>
+  <line class="arrow" x1="570" y1="84" x2="603" y2="84"/>
+
+  <text x="20" y="140" class="mut">Idempotent: chunk id = sha256(source::index::text) → upsert overwrites, no duplicates</text>
+
+  <!-- query row -->
+  <rect class="box" x="20" y="195" width="160" height="58" rx="8"/>
+  <text x="100" y="218" text-anchor="middle" class="lbl" font-weight="600">Query (HTTP)</text>
+  <text x="100" y="236" text-anchor="middle" class="mut">POST /query {q,k,doc_type}</text>
+
+  <rect class="box" x="215" y="195" width="180" height="58" rx="8"/>
+  <text x="305" y="218" text-anchor="middle" class="lbl" font-weight="600">Top-k retrieval</text>
+  <text x="305" y="236" text-anchor="middle" class="mut">+ metadata filter (doc_type)</text>
+
+  <line class="arrow" x1="180" y1="224" x2="213" y2="224"/>
+  <line class="arrow" x1="395" y1="224" x2="490" y2="224"/>
+  <!-- retrieval reads store -->
+  <line class="arrow" x1="305" y1="195" x2="660" y2="125"/>
+
+  <!-- decision -->
+  <polygon points="555,224 605,194 655,224 605,254" fill="#fff7e6" stroke="#d08a2d" stroke-width="1.5"/>
+  <text x="605" y="222" text-anchor="middle" class="mut">score ≥</text>
+  <text x="605" y="236" text-anchor="middle" class="mut">MIN_SCORE?</text>
+
+  <!-- yes -> LLM -->
+  <rect class="llm" x="715" y="180" width="180" height="88" rx="8"/>
+  <text x="805" y="206" text-anchor="middle" class="lbl" font-weight="600">Grounded LLM</text>
+  <text x="805" y="224" text-anchor="middle" class="mut">gpt-oss-120b (Groq)</text>
+  <text x="805" y="242" text-anchor="middle" class="mut">cites [1][2] · temp 0</text>
+  <text x="805" y="258" text-anchor="middle" class="mut">context-only system prompt</text>
+  <line class="arrow" x1="655" y1="224" x2="713" y2="224"/>
+  <text x="675" y="214" class="mut">yes</text>
+
+  <!-- no -> guard -->
+  <rect class="guard" x="540" y="300" width="190" height="66" rx="8"/>
+  <text x="635" y="326" text-anchor="middle" class="lbl" font-weight="600">No-context guard</text>
+  <text x="635" y="344" text-anchor="middle" class="mut">"I don't have enough info"</text>
+  <text x="635" y="358" text-anchor="middle" class="mut">LLM is never called</text>
+  <line class="arrow" x1="605" y1="254" x2="620" y2="298"/>
+  <text x="628" y="280" class="mut">no</text>
+
+  <!-- answer out -->
+  <rect class="box" x="715" y="300" width="180" height="66" rx="8"/>
+  <text x="805" y="326" text-anchor="middle" class="lbl" font-weight="600">Answer + citations</text>
+  <text x="805" y="344" text-anchor="middle" class="mut">+ per-query log:</text>
+  <text x="805" y="358" text-anchor="middle" class="mut">latency · chunks · tokens</text>
+  <line class="arrow" x1="805" y1="268" x2="805" y2="298"/>
+
+  <!-- eval band -->
+  <rect x="20" y="420" width="875" height="118" rx="8" fill="#f7f7fa" stroke="#9aa5b1" stroke-dasharray="5 4"/>
+  <text x="35" y="444" font-weight="700" class="lbl">Evaluation harness (15–30 Q gold set)</text>
+  <text x="35" y="470" class="lbl" font-weight="600">Retrieval IR</text>
+  <text x="35" y="488" class="mut">Hit Rate · MRR · nDCG@k</text>
+  <text x="35" y="504" class="mut">context precision</text>
+  <text x="330" y="470" class="lbl" font-weight="600">Answer quality</text>
+  <text x="330" y="488" class="mut">faithfulness + relevance</text>
+  <text x="330" y="504" class="mut">(LLM-judge, diff family) · EM/F1</text>
+  <text x="640" y="470" class="lbl" font-weight="600">Cost &amp; latency</text>
+  <text x="640" y="488" class="mut">$/mo @100K/1M/10M vs managed</text>
+  <text x="640" y="504" class="mut">retrieval p50/p95</text>
+</svg>

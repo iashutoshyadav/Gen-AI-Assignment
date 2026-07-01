@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 580" font-family="system-ui,Segoe UI,Arial" font-size="13">
+  <style>
+    .box{fill:#f4f7fb;stroke:#4a6fa5;stroke-width:1.5}
+    .judge{fill:#fdf2e3;stroke:#d08a2d;stroke-width:1.5}
+    .bias{fill:#fdeaea;stroke:#c0392b;stroke-width:1.5}
+    .ok{fill:#eaf6ec;stroke:#3a8f4f;stroke-width:1.5}
+    .lbl{fill:#1f2d3d}
+    .mut{fill:#5b6b7d;font-size:11px}
+    .arrow{stroke:#4a6fa5;stroke-width:1.6;fill:none;marker-end:url(#a)}
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#4a6fa5"/>
+    </marker>
+  </defs>
+
+  <text x="20" y="28" font-size="17" font-weight="700" class="lbl">LLM-as-Judge — Pipeline Architecture</text>
+
+  <rect class="box" x="20" y="55" width="160" height="60" rx="8"/>
+  <text x="100" y="80" text-anchor="middle" class="lbl" font-weight="600">Test suite</text>
+  <text x="100" y="98" text-anchor="middle" class="mut">JSON/YAML cases</text>
+
+  <rect class="box" x="215" y="55" width="180" height="60" rx="8"/>
+  <text x="305" y="80" text-anchor="middle" class="lbl" font-weight="600">Prompt construction</text>
+  <text x="305" y="98" text-anchor="middle" class="mut">rubric + few-shot anchors</text>
+
+  <rect class="judge" x="430" y="55" width="170" height="60" rx="8"/>
+  <text x="515" y="80" text-anchor="middle" class="lbl" font-weight="600">Judge model</text>
+  <text x="515" y="98" text-anchor="middle" class="mut">Qwen (≠ generator family)</text>
+
+  <rect class="box" x="635" y="55" width="180" height="60" rx="8"/>
+  <text x="725" y="78" text-anchor="middle" class="lbl" font-weight="600">Parse verdict</text>
+  <text x="725" y="96" text-anchor="middle" class="mut">structured JSON +</text>
+  <text x="725" y="110" text-anchor="middle" class="mut">malformed-JSON fallback</text>
+
+  <line class="arrow" x1="180" y1="85" x2="213" y2="85"/>
+  <line class="arrow" x1="395" y1="85" x2="428" y2="85"/>
+  <line class="arrow" x1="600" y1="85" x2="633" y2="85"/>
+
+  <!-- retry loop -->
+  <path class="arrow" d="M725 115 C 725 150, 515 150, 515 117"/>
+  <text x="600" y="148" class="mut">retry on parse fail (×2)</text>
+
+  <!-- bias band -->
+  <rect class="bias" x="215" y="185" width="600" height="92" rx="8"/>
+  <text x="230" y="208" font-weight="700" class="lbl">Bias mitigations (in the flow)</text>
+  <text x="230" y="232" class="mut">• Position: judge each pair in BOTH orders → flip rate, tie on disagreement</text>
+  <text x="230" y="250" class="mut">• Verbosity: padded-answer probe → measure score inflation</text>
+  <text x="230" y="268" class="mut">• Self-enhancement: judge family ≠ generator family · Score clustering: few-shot anchors</text>
+  <line class="arrow" x1="515" y1="115" x2="515" y2="183"/>
+
+  <!-- aggregation -->
+  <rect class="box" x="215" y="315" width="180" height="62" rx="8"/>
+  <text x="305" y="340" text-anchor="middle" class="lbl" font-weight="600">Per-case → suite</text>
+  <text x="305" y="358" text-anchor="middle" class="mut">pass rate · mean · spread</text>
+  <line class="arrow" x1="305" y1="277" x2="305" y2="313"/>
+
+  <rect class="box" x="430" y="315" width="180" height="62" rx="8"/>
+  <text x="520" y="340" text-anchor="middle" class="lbl" font-weight="600">A/B comparison</text>
+  <text x="520" y="358" text-anchor="middle" class="mut">win rate · declared winner</text>
+  <line class="arrow" x1="395" y1="346" x2="428" y2="346"/>
+
+  <rect class="ok" x="635" y="315" width="180" height="62" rx="8"/>
+  <text x="725" y="340" text-anchor="middle" class="lbl" font-weight="600">Suite report</text>
+  <text x="725" y="358" text-anchor="middle" class="mut">JSON out</text>
+  <line class="arrow" x1="610" y1="346" x2="633" y2="346"/>
+
+  <!-- audit log -->
+  <rect class="box" x="20" y="315" width="160" height="62" rx="8" stroke-dasharray="5 4"/>
+  <text x="100" y="340" text-anchor="middle" class="lbl" font-weight="600">Audit log</text>
+  <text x="100" y="358" text-anchor="middle" class="mut">every prompt+raw resp</text>
+  <line class="arrow" x1="515" y1="115" x2="170" y2="313"/>
+
+  <!-- validation band -->
+  <rect x="20" y="430" width="795" height="120" rx="8" fill="#f7f7fa" stroke="#9aa5b1" stroke-dasharray="5 4"/>
+  <text x="35" y="454" font-weight="700" class="lbl">Judge validation</text>
+  <text x="35" y="480" class="lbl" font-weight="600">Agreement</text>
+  <text x="35" y="498" class="mut">vs gold labels</text>
+  <text x="35" y="514" class="mut">+ Cohen's kappa</text>
+  <text x="290" y="480" class="lbl" font-weight="600">Test-retest</text>
+  <text x="290" y="498" class="mut">re-run at temp 0</text>
+  <text x="290" y="514" class="mut">decision flip rate</text>
+  <text x="560" y="480" class="lbl" font-weight="600">Adversarial probes</text>
+  <text x="560" y="498" class="mut">verbose-but-wrong</text>
+  <text x="560" y="514" class="mut">terse-but-correct → fooled?</text>
+</svg>

@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.env
+rag-app/chroma_db/
+rag-app/eval/results.json
+llm-judge/reports/logs/

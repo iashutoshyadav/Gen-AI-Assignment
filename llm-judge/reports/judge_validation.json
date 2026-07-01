@@ -1,0 +1,61 @@
+{
+  "agreement_with_gold": 1.0,
+  "cohens_kappa": 1.0,
+  "adversarial_fooled_rate": 0,
+  "adversarial_detail": [
+    {
+      "id": "c3_verbose_wrong",
+      "label": "verbose_but_wrong",
+      "overall": 1.8,
+      "correctness": 1,
+      "faithfulness": 1,
+      "fooled": false
+    },
+    {
+      "id": "c4_terse_correct",
+      "label": "terse_but_correct",
+      "overall": 5.0,
+      "penalized_for_brevity": false
+    },
+    {
+      "id": "c5_confident_wrong",
+      "label": "confidently_wrong",
+      "overall": 1.7,
+      "correctness": 1,
+      "faithfulness": 1,
+      "fooled": false
+    }
+  ],
+  "test_retest": {
+    "c1": {
+      "decisions": [
+        true,
+        true,
+        true
+      ],
+      "flip_rate": 0.0
+    },
+    "c2": {
+      "decisions": [
+        true,
+        true,
+        true
+      ],
+      "flip_rate": 0.0
+    },
+    "c3_verbose_wrong": {
+      "decisions": [
+        false,
+        false,
+        false
+      ],
+      "flip_rate": 0.0
+    }
+  },
+  "verbosity_probe": {
+    "base_overall": 5.0,
+    "padded_overall": 4.7,
+    "score_inflation_from_padding": -0.3
+  },
+  "n_cases": 5
+}

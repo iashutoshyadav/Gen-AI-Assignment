@@ -1,0 +1,54 @@
+{
+  "config_a": "prompt_v1_concise",
+  "config_b": "prompt_v2_verbose",
+  "n_pairs": 5,
+  "a_wins": 4,
+  "b_wins": 1,
+  "ties": 0,
+  "win_rate_a": 0.8,
+  "win_rate_b": 0.2,
+  "position_flip_rate": 0.0,
+  "winner": "prompt_v1_concise",
+  "rows": [
+    {
+      "input": "What is the default Kubernetes Service type?",
+      "forward": "a",
+      "reverse": "a",
+      "flipped": false,
+      "consensus": "a",
+      "tokens": 3066
+    },
+    {
+      "input": "What is the default deployment strategy?",
+      "forward": "a",
+      "reverse": "a",
+      "flipped": false,
+      "consensus": "a",
+      "tokens": 2996
+    },
+    {
+      "input": "How many revisions does Kubernetes retain by defau",
+      "forward": "a",
+      "reverse": "a",
+      "flipped": false,
+      "consensus": "a",
+      "tokens": 2765
+    },
+    {
+      "input": "What is a PersistentVolumeClaim?",
+      "forward": "a",
+      "reverse": "a",
+      "flipped": false,
+      "consensus": "a",
+      "tokens": 2816
+    },
+    {
+      "input": "What is the maximum size of a Secret?",
+      "forward": "b",
+      "reverse": "b",
+      "flipped": false,
+      "consensus": "b",
+      "tokens": 3101
+    }
+  ]
+}

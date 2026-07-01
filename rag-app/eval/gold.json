@@ -1,0 +1,20 @@
+[
+  {"q": "What is the smallest deployable unit in Kubernetes?", "relevant": "k8s_pods.md", "gold": "A Pod is the smallest deployable unit in Kubernetes."},
+  {"q": "What do containers in a Pod share?", "relevant": "k8s_pods.md", "gold": "Containers in a Pod share the same network namespace and storage volumes."},
+  {"q": "What are the five phases of a Pod?", "relevant": "k8s_pods.md", "gold": "Pending, Running, Succeeded, Failed, and Unknown."},
+  {"q": "What is the default restart policy for a Pod?", "relevant": "k8s_pods.md", "gold": "The default restart policy is Always."},
+  {"q": "What is a Kubernetes Service?", "relevant": "k8s_services.md", "gold": "A Service is an abstraction that defines a logical set of Pods and a policy to access them, providing a stable endpoint."},
+  {"q": "What is the default Service type?", "relevant": "k8s_services.md", "gold": "ClusterIP is the default Service type."},
+  {"q": "What are the four main Service types?", "relevant": "k8s_services.md", "gold": "ClusterIP, NodePort, LoadBalancer, and ExternalName."},
+  {"q": "What component implements the Service abstraction on each node?", "relevant": "k8s_services.md", "gold": "kube-proxy implements the Service abstraction by managing network rules."},
+  {"q": "What does a Deployment provide?", "relevant": "k8s_deployments.md", "gold": "A Deployment provides declarative updates for Pods and ReplicaSets."},
+  {"q": "What is the default deployment strategy?", "relevant": "k8s_deployments.md", "gold": "RollingUpdate is the default deployment strategy."},
+  {"q": "How many revisions does Kubernetes retain by default?", "relevant": "k8s_deployments.md", "gold": "By default Kubernetes retains the last ten revisions."},
+  {"q": "What is a PersistentVolumeClaim?", "relevant": "k8s_storage.md", "gold": "A PersistentVolumeClaim is a request for storage by a user."},
+  {"q": "What are the access modes for a PersistentVolume?", "relevant": "k8s_storage.md", "gold": "ReadWriteOnce, ReadOnlyMany, ReadWriteMany, and ReadWriteOncePod."},
+  {"q": "What is the default reclaim policy for dynamically provisioned volumes?", "relevant": "k8s_storage.md", "gold": "The default reclaim policy is Delete."},
+  {"q": "What is a ConfigMap used for?", "relevant": "k8s_config.md", "gold": "A ConfigMap stores non-confidential configuration data in key-value pairs."},
+  {"q": "How are Secrets stored by default in etcd?", "relevant": "k8s_config.md", "gold": "Secrets are stored unencrypted as base64-encoded strings by default."},
+  {"q": "What is the maximum size of a Secret?", "relevant": "k8s_config.md", "gold": "The maximum size of a Secret is 1 MiB."},
+  {"q": "Who won the 2018 FIFA World Cup?", "relevant": null, "gold": "I don't have enough information in the provided context to answer that."}
+]

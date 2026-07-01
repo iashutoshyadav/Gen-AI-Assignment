@@ -1,0 +1,11 @@
+{
+  "backend": "onnx",
+  "k": 5,
+  "hit_rate@k": 1.0,
+  "mrr": 1.0,
+  "ndcg@k": 0.969,
+  "context_precision": 0.247,
+  "no_context_guard_accuracy": 1.0,
+  "retrieval_p50_ms": 251.92,
+  "retrieval_p95_ms": 444.55
+}

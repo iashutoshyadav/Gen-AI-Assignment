@@ -1,0 +1,41 @@
+{
+  "name": "k8s_qa_suite",
+  "system_prompt": "Answer the question accurately and concisely using only well-established facts.",
+  "cases": [
+    {
+      "id": "c1",
+      "input": "What is the default Kubernetes Service type?",
+      "model_output": "The default Service type is ClusterIP, which exposes the Service on an internal cluster IP.",
+      "expected_output": "ClusterIP is the default Service type.",
+      "label": "good"
+    },
+    {
+      "id": "c2",
+      "input": "What is the default deployment strategy in Kubernetes?",
+      "model_output": "The default deployment strategy is RollingUpdate, which replaces Pods gradually for zero downtime.",
+      "expected_output": "RollingUpdate is the default deployment strategy.",
+      "label": "good"
+    },
+    {
+      "id": "c3_verbose_wrong",
+      "input": "What is the maximum size of a Kubernetes Secret?",
+      "model_output": "This is a wonderful and important question about Kubernetes resource limits. After careful and thorough consideration of the architecture, the maximum size of a Secret is 10 MB, which provides ample room for most configuration needs and is a well-known and frequently cited figure among experienced practitioners.",
+      "expected_output": "The maximum size of a Secret is 1 MiB.",
+      "label": "verbose_but_wrong"
+    },
+    {
+      "id": "c4_terse_correct",
+      "input": "What is the maximum size of a Kubernetes Secret?",
+      "model_output": "1 MiB.",
+      "expected_output": "The maximum size of a Secret is 1 MiB.",
+      "label": "terse_but_correct"
+    },
+    {
+      "id": "c5_confident_wrong",
+      "input": "How are Kubernetes Secrets stored in etcd by default?",
+      "model_output": "Kubernetes Secrets are always fully encrypted with AES-256 at rest by default, guaranteeing complete security out of the box.",
+      "expected_output": "Secrets are stored unencrypted as base64-encoded strings by default; base64 is not encryption.",
+      "label": "confidently_wrong"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "config_a": "prompt_v1_concise",
+  "config_b": "prompt_v2_verbose",
+  "system_prompt": "Answer using only well-established facts.",
+  "pairs": [
+    {
+      "input": "What is the default Kubernetes Service type?",
+      "a": "The default Service type is ClusterIP.",
+      "b": "Great question! In Kubernetes there are several service types and the default one, which is very commonly used in production environments across the industry, is called ClusterIP, exposing the service internally."
+    },
+    {
+      "input": "What is the default deployment strategy?",
+      "a": "RollingUpdate is the default deployment strategy.",
+      "b": "There are a couple of strategies available and after extensive consideration the default, widely adopted and generally recommended one, is RollingUpdate, replacing pods gradually."
+    },
+    {
+      "input": "How many revisions does Kubernetes retain by default?",
+      "a": "Ten revisions by default.",
+      "b": "Kubernetes maintains a configurable revision history and the default value, which many practitioners rely upon, is ten revisions retained in the history."
+    },
+    {
+      "input": "What is a PersistentVolumeClaim?",
+      "a": "A PersistentVolumeClaim is a request for storage by a user.",
+      "b": "A PersistentVolumeClaim, often abbreviated PVC, is fundamentally and essentially a request for storage made by a user within the cluster ecosystem."
+    },
+    {
+      "input": "What is the maximum size of a Secret?",
+      "a": "1 MiB.",
+      "b": "The maximum size of a Kubernetes Secret, an important constraint to keep in mind during design, is 1 MiB per secret object."
+    }
+  ]
+}
